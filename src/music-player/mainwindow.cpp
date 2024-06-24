@@ -24,4 +24,5 @@ void MainWindow::resizeEvent(QResizeEvent *ev) {
     Q_UNUSED(ev)
     ui->maxBtn->setHidden(isMaximized());
     ui->restoreBtn->setHidden(!isMaximized());
+    setContentsMargins(isMaximized() ? QMargins(0, 0, 0,0) : QMargins(8, 8, 8, 8));
 }
