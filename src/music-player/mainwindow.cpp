@@ -2,6 +2,7 @@
 
 #include <QGraphicsDropShadowEffect>
 
+#include "./player/player.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : BaseWidget(parent), ui(new Ui::MainWindow) {
@@ -16,6 +17,21 @@ MainWindow::MainWindow(QWidget *parent) : BaseWidget(parent), ui(new Ui::MainWin
     shadow->setColor(Qt::gray);
     shadow->setBlurRadius(32);
     ui->container->setGraphicsEffect(shadow);
+
+#if 1 // debug
+    QVariantList list;
+    QVariantMap map1;
+    map1.insert("path", "C:/test/1.mp3");
+    list.append(map1);
+    QVariantMap map2;
+    map2.insert("path", "C:/test/2.mp3");
+    list.append(map2);
+
+    Playlist *playlist = PLAYER->playlist();
+    playlist->setSongList(list);
+
+    PLAYER->play();
+#endif
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -24,5 +40,5 @@ void MainWindow::resizeEvent(QResizeEvent *ev) {
     Q_UNUSED(ev)
     ui->maxBtn->setHidden(isMaximized());
     ui->restoreBtn->setHidden(!isMaximized());
-    setContentsMargins(isMaximized() ? QMargins(0, 0, 0,0) : QMargins(8, 8, 8, 8));
+    setContentsMargins(isMaximized() ? QMargins(0, 0, 0, 0) : QMargins(8, 8, 8, 8));
 }

@@ -2,9 +2,12 @@
 
 #include <QAudioOutput>
 #include <QDebug>
+#include <QGlobalStatic>
 #include <QMediaPlayer>
 
 #include "playlist.h"
+
+Q_GLOBAL_STATIC(Player, player)
 
 Player::Player(QObject *parent) : QObject{parent} {
     m_output = new QAudioOutput(this);
@@ -18,6 +21,8 @@ Player::Player(QObject *parent) : QObject{parent} {
 
     m_list = new Playlist(this);
 }
+
+Player *Player::instance() { return player; }
 
 void Player::play() {
     QString path = m_list->nextSong();

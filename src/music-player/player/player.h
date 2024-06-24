@@ -9,6 +9,10 @@
 
 #include <QObject>
 
+#include "playlist.h"
+
+#define PLAYER Player::instance()
+
 class QAudioOutput;
 class QMediaPlayer;
 class Playlist;
@@ -16,6 +20,7 @@ class Player : public QObject {
     Q_OBJECT
 public:
     explicit Player(QObject *parent = nullptr);
+    static Player *instance();
 
     Playlist *playlist() const { return m_list; }
 
