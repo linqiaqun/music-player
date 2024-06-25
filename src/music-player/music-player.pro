@@ -5,6 +5,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++17
 
 include($$PWD/basewidget/basewidget.pri)
+include($$PWD/configuration/configuration.pri)
 include($$PWD/player/player.pri)
 
 SOURCES += \

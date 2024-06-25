@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) : BaseWidget(parent), ui(new Ui::MainWin
     shadow->setBlurRadius(32);
     ui->container->setGraphicsEffect(shadow);
 
-#if 1 // debug
+#if 1  // debug
     QVariantList list;
     QVariantMap map1;
     map1.insert("path", "C:/test/1.mp3");
