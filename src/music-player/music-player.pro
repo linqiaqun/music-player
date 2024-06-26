@@ -6,6 +6,7 @@ CONFIG += c++17
 
 include($$PWD/basewidget/basewidget.pri)
 include($$PWD/configuration/configuration.pri)
+include($$PWD/database/database.pri)
 include($$PWD/player/player.pri)
 
 SOURCES += \
