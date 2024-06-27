@@ -4,5 +4,11 @@
         <file>images/maxmize.png</file>
         <file>images/minimize.png</file>
         <file>images/restore.png</file>
+        <file>images/favorite-menu.png</file>
+        <file>images/home-menu.png</file>
+        <file>images/library-menu.png</file>
+        <file>images/settings-menu.png</file>
+        <file>images/logo.png</file>
+        <file>images/banner.png</file>
     </qresource>
 </RCC>

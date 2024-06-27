@@ -21,7 +21,6 @@ int main(int argc, char *argv[]) {
                               QObject::tr("initialize database failed"));
         return 2;
     }
-    qDebug() << DB->getPlaylistList();
 
     MainWindow w;
     w.show();

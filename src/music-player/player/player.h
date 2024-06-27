@@ -1,10 +1,3 @@
-/*!
- *    file: player.h
- *    author: linqiaqun@163.com
- *    date: 2024-06-20 11:43
- *    license: LGPL-3.0-only
- */
-
 #pragma once
 
 #include <QObject>
