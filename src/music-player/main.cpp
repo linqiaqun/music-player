@@ -3,20 +3,27 @@
 
 #include "./configuration/configuration.h"
 #include "./database/database.h"
+#include "./util/util.h"
 #include "mainwindow.h"
 
 int main(int argc, char *argv[]) {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
 
     // load global configuration file
-    if (!CONFIG->readFile(a.applicationDirPath() + "/app.json", true)) {
+    if (!CONFIG->readFile(app.applicationDirPath() + "/app.json", true)) {
         QMessageBox::critical(nullptr, QObject::tr("error"),
                               QObject::tr("load configuration file failed"));
         return 1;
     }
 
+    // set qss
+    if (!Util::setQss(CONFIG->value("theme_list").toList(),
+                      CONFIG->value("current_theme").toInt())) {
+        QMessageBox::warning(nullptr, QObject::tr("warning"), QObject::tr("set qss failed"));
+    }
+
     // initialize database
-    if (!DB->init(a.applicationDirPath() + "/main.db")) {
+    if (!DB->init(app.applicationDirPath() + "/main.db")) {
         QMessageBox::critical(nullptr, QObject::tr("error"),
                               QObject::tr("initialize database failed"));
         return 2;
@@ -24,5 +31,5 @@ int main(int argc, char *argv[]) {
 
     MainWindow w;
     w.show();
-    return a.exec();
+    return app.exec();
 }

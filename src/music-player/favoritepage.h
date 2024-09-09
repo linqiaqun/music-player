@@ -15,6 +15,9 @@ public:
 
     bool init() override;
 
+private slots:
+    void playBtnClicked();
+
 private:
     Ui::FavoritePage *ui;
 };

@@ -6,69 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1024</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>music player</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget {
-	font-family: &quot;Microsoft YaHei&quot;;
-	font-size: 16px;
-}
-
-QFrame#container {
-	background-color: #2e2f30;
-}
-
-QFrame#menuFrame {
-	border: none;
-	background-color: #202020;
-	min-width: 256px;
-	max-width: 256px;
-}
-
-QLabel#banner {
-	background-image: url(:/images/banner.png);
-}
-
-QFrame#contentFrame {
-	border: none;
-}
-
-QFrame#menuFrame .QToolButton {
-	border: none;
-	min-height: 40px;
-	max-height: 40px;
-	color: white;
-	font-size: 20px;
-	font-weight: bold;
-	padding-left: 8px;
-	padding-right: 8px;
-	qproperty-iconSize: 24px 24px;
-}
-
-QFrame#menuFrame .QToolButton:checked {
-	background-color: #7b90ec;
-}
-
-QToolButton#homeBtn {
-	qproperty-icon: url(:/images/home-menu.png);
-}
-
-QToolButton#libBtn {
-	qproperty-icon: url(:/images/library-menu.png);
-}
-
-QToolButton#favBtn {
-	qproperty-icon: url(:/images/favorite-menu.png);
-}
-
-QToolButton#settingBtn {
-	qproperty-icon: url(:/images/settings-menu.png);
-}</string>
+   <string notr="true"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -176,7 +122,7 @@ QToolButton#settingBtn {
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Home</string>
+              <string> Home</string>
              </property>
              <property name="checkable">
               <bool>true</bool>
@@ -198,7 +144,7 @@ QToolButton#settingBtn {
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Library</string>
+              <string> Library</string>
              </property>
              <property name="checkable">
               <bool>true</bool>
@@ -220,7 +166,7 @@ QToolButton#settingBtn {
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Favorite</string>
+              <string> Favorite</string>
              </property>
              <property name="checkable">
               <bool>true</bool>
@@ -242,7 +188,7 @@ QToolButton#settingBtn {
               </sizepolicy>
              </property>
              <property name="text">
-              <string>Settings</string>
+              <string> Settings</string>
              </property>
              <property name="checkable">
               <bool>true</bool>

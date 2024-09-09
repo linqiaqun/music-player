@@ -13,20 +13,26 @@
   <property name="windowTitle">
    <string>library page</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>340</x>
-     <y>350</y>
-     <width>69</width>
-     <height>19</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>library page</string>
-   </property>
-  </widget>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QStackedWidget" name="stackedWidget">
+     <widget class="QWidget" name="listPage"/>
+     <widget class="CategoryPage" name="detailPage"/>
+    </widget>
+   </item>
+  </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CategoryPage</class>
+   <extends>QWidget</extends>
+   <header>categorypage.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

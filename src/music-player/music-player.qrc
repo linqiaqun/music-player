@@ -10,5 +10,27 @@
         <file>images/settings-menu.png</file>
         <file>images/logo.png</file>
         <file>images/banner.png</file>
+        <file>images/add-btn.png</file>
+        <file>images/category.png</file>
+        <file>images/fav-border.png</file>
+        <file>images/fav-fill.png</file>
+        <file>images/add-action.png</file>
+        <file>images/edit-action.png</file>
+        <file>images/play-action.png</file>
+        <file>images/remove-action.png</file>
+        <file>images/favorite-cover.jpg</file>
+        <file>images/next.png</file>
+        <file>images/pause.png</file>
+        <file>images/play.png</file>
+        <file>images/previous.png</file>
+        <file>images/random.png</file>
+        <file>images/volume_max.png</file>
+        <file>images/volume_muted.png</file>
+        <file>images/volume_normal.png</file>
+        <file>images/playlist.png</file>
+        <file>images/current-item-in-loop.png</file>
+        <file>images/current-item-once.png</file>
+        <file>images/loop.png</file>
+        <file>images/sequential.png</file>
     </qresource>
 </RCC>

@@ -1,12 +1,13 @@
 #include "mainwindow.h"
 
-#include <QGraphicsDropShadowEffect>
 #include <QDebug>
+#include <QGraphicsDropShadowEffect>
 #include <QMessageBox>
 
+#include "./configuration/configuration.h"
 #include "./player/player.h"
-#include "ui_mainwindow.h"
 #include "basepage.h"
+#include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : BaseWidget(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
@@ -23,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) : BaseWidget(parent), ui(new Ui::MainWin
     ui->container->setGraphicsEffect(shadow);
 
     // setting of switching menu button
-    QList<QToolButton *> menuList = { ui->homeBtn, ui->libBtn, ui->favBtn, ui->settingBtn };
+    QList<QToolButton *> menuList = {ui->homeBtn, ui->libBtn, ui->favBtn, ui->settingBtn};
     for (auto i = 0; i < menuList.count(); ++i) ui->menuGroup->setId(menuList[i], i);
     connect(ui->menuGroup, &QButtonGroup::idClicked, this, [=](int id) {
         BasePage *page = dynamic_cast<BasePage *>(ui->stackedWidget->widget(id));
@@ -39,20 +40,8 @@ MainWindow::MainWindow(QWidget *parent) : BaseWidget(parent), ui(new Ui::MainWin
     });
     ui->homeBtn->click();
 
-#if 0  // debug
-    QVariantList list;
-    QVariantMap map1;
-    map1.insert("path", "C:/test/1.mp3");
-    list.append(map1);
-    QVariantMap map2;
-    map2.insert("path", "C:/test/2.mp3");
-    list.append(map2);
-
-    Playlist *playlist = PLAYER->playlist();
-    playlist->setSongList(list);
-
-    PLAYER->play();
-#endif
+    PLAYER->setVolume(CONFIG->value("volume").toFloat());
+    PLAYER->playlist()->setPlaybackMode((Playlist::PLAYBACK_MODE)CONFIG->value("playback_mode").toInt());
 }
 
 MainWindow::~MainWindow() { delete ui; }

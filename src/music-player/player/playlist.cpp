@@ -8,9 +8,13 @@ void Playlist::setSongList(const QVariantList &songList) {
     m_list = songList;
     m_history.clear();
     m_index = -1;
+    emit currentIndexChanged();
 }
 
-void Playlist::appendSong(const QVariantMap &song) { m_list.append(song); }
+int Playlist::appendSong(const QVariantMap &song) {
+    m_list.append(song);
+    return m_list.count() - 1;
+}
 
 void Playlist::insertSong(int index, const QVariantMap &song) {
     m_list.insert(index, song);
@@ -24,6 +28,22 @@ bool Playlist::removeSong(int index) {
     return true;
 }
 
+// todo: unit test
+void Playlist::removeSongList(const QVariantList &list) {
+    QString currentPath = currentSong();
+    for (auto i = 0; i < list.count(); ++i) {
+        QString srcPath = list[i].toMap()["path"].toString();
+        if (currentPath == srcPath) emit currentIndexChanged();
+
+        for (auto j = 0; j < m_list.count(); ++j) {
+            if (srcPath == m_list[j].toMap()["path"].toString()) {
+                m_list.removeAt(j);
+                break;
+            }
+        }
+    }
+}
+
 void Playlist::clear() {
     m_list.clear();
     m_index = -1;
@@ -32,7 +52,15 @@ void Playlist::clear() {
 
 bool Playlist::isEmpty() const { return m_list.isEmpty(); }
 
-void Playlist::setPlaybackMode(PLAYBACK_MODE mode) { m_mode = mode; }
+void Playlist::setPlaybackMode(PLAYBACK_MODE mode) {
+    m_mode = mode;
+    emit playbackModeChanged(m_mode);
+}
+
+void Playlist::nextPlaybackMode() {
+    m_mode = (PLAYBACK_MODE)((m_mode + 1) % 5);
+    emit playbackModeChanged(m_mode);
+}
 
 void Playlist::setCurrentIndex(int index) {
     if ((index >= 0) && (index < m_list.count())) m_index = index;
@@ -57,6 +85,8 @@ QString Playlist::previousSong() {
 }
 
 QString Playlist::nextSong() {
+    if (isAvailableIndex(m_index)) m_history.push_back(m_index);
+
     switch (m_mode) {
         case CurrentItemOnce:
         case CurrentItemInLoop:

@@ -16,5 +16,8 @@ public:
     bool init() override;
 
 private:
+    void addCategory(const QVariantMap &map);
+
+private:
     Ui::HomePage *ui;
 };
