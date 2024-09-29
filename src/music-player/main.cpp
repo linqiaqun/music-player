@@ -1,12 +1,16 @@
 #include <QApplication>
+#include <QDebug>
 #include <QMessageBox>
 
 #include "./configuration/configuration.h"
 #include "./database/database.h"
+#include "./logger/logger.h"
 #include "./util/util.h"
 #include "mainwindow.h"
 
 int main(int argc, char *argv[]) {
+    Logger::enable();
+
     QApplication app(argc, argv);
 
     // load global configuration file
