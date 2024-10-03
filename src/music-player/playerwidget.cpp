@@ -46,6 +46,7 @@ PlayerWidget::PlayerWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Player
         ui->pwTitle->setText(map["title"].toString());
         ui->pwArtist->setText(map["artist"].toString());
     });
+    connect(PLAYER, &Player::stateChanged, this, &PlayerWidget::stateChanged);
 }
 
 PlayerWidget::~PlayerWidget() { delete ui; }
@@ -81,7 +82,12 @@ void PlayerWidget::modeBtnClicked() { PLAYER->playlist()->nextPlaybackMode(); }
 
 void PlayerWidget::previousBtnClicked() { PLAYER->previous(); }
 
-void PlayerWidget::playBtnClicked() { PLAYER->play(); }
+void PlayerWidget::playBtnClicked() {
+    if (PLAYER->isPlaying())
+        PLAYER->pause();
+    else
+        PLAYER->play();
+}
 
 void PlayerWidget::nextBtnClicked() { PLAYER->next(); }
 
@@ -115,6 +121,13 @@ void PlayerWidget::positionClicked(qint64 pos) {
     disconnect(PLAYER, &Player::positionChanged, this, &PlayerWidget::positionChanged);
     PLAYER->setPosition(pos);
     connect(PLAYER, &Player::positionChanged, this, &PlayerWidget::positionChanged);
+}
+
+void PlayerWidget::stateChanged(int state) {
+    if (1 == state)
+        ui->pwPlayBtn->setIcon(QIcon(QPixmap(":/images/pause.png")));
+    else
+        ui->pwPlayBtn->setIcon(QIcon(QPixmap(":/images/play.png")));
 }
 
 void PlayerWidget::setSong(const QVariantMap &map) {

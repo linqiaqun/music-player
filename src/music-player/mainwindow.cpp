@@ -40,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent) : BaseWidget(parent), ui(new Ui::MainWin
     });
     ui->homeBtn->click();
 
+    connect(PLAYER, &Player::sourceChanged, this, &MainWindow::sourceChanged);
     PLAYER->setVolume(CONFIG->value("volume").toFloat());
     PLAYER->playlist()->setPlaybackMode((Playlist::PLAYBACK_MODE)CONFIG->value("playback_mode").toInt());
 }
@@ -51,4 +52,8 @@ void MainWindow::resizeEvent(QResizeEvent *ev) {
     ui->maxBtn->setHidden(isMaximized());
     ui->restoreBtn->setHidden(!isMaximized());
     setContentsMargins(isMaximized() ? QMargins(0, 0, 0, 0) : QMargins(8, 8, 8, 8));
+}
+
+void MainWindow::sourceChanged(QString path) {
+
 }

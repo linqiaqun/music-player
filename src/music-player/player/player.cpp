@@ -45,11 +45,15 @@ Player *Player::instance() { return player; }
 
 float Player::volume() const { return m_output->volume(); }
 
-void Player::play() {
-    QString path = m_list->nextSong();
-    if (path.isEmpty()) return;
+bool Player::isPlaying() const { return m_player->isPlaying(); }
 
-    m_player->setSource(QUrl(path));
+void Player::play() {
+    if (QMediaPlayer::PausedState != m_player->playbackState()) {
+        QString path = m_list->nextSong();
+        if (path.isEmpty()) return;
+
+        m_player->setSource(QUrl(path));
+    }
     m_player->play();
 }
 
@@ -86,9 +90,7 @@ void Player::setMuted(bool muted) {
 
 void Player::setPosition(qint64 pos) { m_player->setPosition(pos); }
 
-void Player::playbackStateChanged(int state) {
-    emit stateChanged(int(state));
-}
+void Player::playbackStateChanged(int state) { emit stateChanged(int(state)); }
 
 void Player::currentIndexChanged() {
     if (m_player->isPlaying()) m_player->stop();

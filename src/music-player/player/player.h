@@ -17,6 +17,7 @@ public:
 
     Playlist *playlist() const { return m_list; }
     float volume() const;
+    bool isPlaying() const;
 
 signals:
     void mutedChanged(bool);

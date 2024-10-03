@@ -18,6 +18,9 @@ public:
 protected:
     void resizeEvent(QResizeEvent *ev) override;
 
+private slots:
+    void sourceChanged(QString);
+
 private:
     Ui::MainWindow *ui;
 };

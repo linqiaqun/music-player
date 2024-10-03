@@ -26,6 +26,7 @@ private slots:
     void modeChanged(int);
     void positionChanged(qint64);
     void positionClicked(qint64);
+    void stateChanged(int);
 
 private:
     void setSong(const QVariantMap &map);
